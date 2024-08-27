@@ -47,8 +47,7 @@ caltrack <command> [amount] [--m <meal>] [--n <nutrient>]
 
 ### Options
 
-- `amount`: The amount of protein (in grams) or calorie (in kcal) to add. This should
-  be a floating-point number.
+- `amount`: The amount of protein (in grams) or calorie (in kcal) to add.
 - `--m`: specify the meal to add or show data for. REQUIRED FOR ALL COMMANDS EXCEPT `reset`. {`breakfast`, `lunch`, `dinner`}
 - `--n`: specify the nutrient to reset. {`protein`, `calorie`}
 
