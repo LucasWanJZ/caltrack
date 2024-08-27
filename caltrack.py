@@ -3,6 +3,8 @@
 import argparse
 import json
 import os
+import ast
+import operator
 from datetime import datetime
 
 DATA_FILE = os.path.expanduser("~/.caltrack.json")
@@ -37,6 +39,15 @@ def reset_data(data):
         data['dinner']['calorie'] = 0
         data['last_updated'] = datetime.now().isoformat()
     	
+# Calculation
+def evaluate_expression(expression):
+    try:
+        tree = ast.parse(expression, mode='eval')
+        return eval(compile(tree, filename="", mode="eval"), {"__builtins__": None}, {
+            'x': operator.mul, '*': operator.mul, '/': operator.truediv, '+': operator.add, '-': operator.sub
+        })
+    except Exception as e:
+        raise ValueError(f"Invalid expression: {expression}. Error: {e}")
 
 # Function to reset the protein and calorie intake
 def reset_nutrient(nutrient=None):
@@ -90,7 +101,7 @@ def track_intake(command, meal=None, amount=None):
 def main():
     parser = argparse.ArgumentParser(description="Track your protein and calorie intake.")
     parser.add_argument('command', choices=['protein','calorie','meals','reset'], help="Choose a command to execute")
-    parser.add_argument('amount', type=float, nargs='?', help="The amount of protein or calorie to add")
+    parser.add_argument('amount', type=str, nargs='?', help="The amount of protein or calorie to add")
     parser.add_argument('--m', choices=['breakfast','lunch','dinner'], help="The meal to add or show the protein or calorie")
     parser.add_argument('--n', choices=['protein','calorie'], help="The nutrient to reset")
 
@@ -107,7 +118,12 @@ def main():
     elif args.amount is None:
         track_intake(args.command, args.m)
     else:
-        track_intake(args.command, args.m, args.amount)
+        try:
+            calculated_amount = round(evaluate_expression(args.amount),2)
+            track_intake(args.command, args.m, calculated_amount)
+            
+        except ValueError as e:
+            print(e)
 
 
 if __name__ == "__main__":

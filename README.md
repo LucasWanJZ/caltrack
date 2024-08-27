@@ -20,7 +20,7 @@ caltrack is a simple command-line tool to help you track your daily intake of pr
 2. Ensure that you have Python 3 installed
 3. Make the script executable
    ```
-   chomod +x caltrack.py
+   chmod +x caltrack.py
    ```
 4. Optionally, add the script to your PATH for easier access:
    ```
@@ -60,7 +60,13 @@ caltrack <command> [amount] [--m <meal>] [--n <nutrient>]
 caltrack protein 30 --m breakfast
 ```
 
-Added 30g of protein to your lunch
+Added 30g of protein to your breakfast
+
+```
+caltrack protein 2.4*2.5 --m lunch
+```
+
+2.4\*2.5g of protein will be calculated first, then add to your lunch.
 
 2. Add Calorie Intake to a Meal
 
@@ -107,5 +113,6 @@ reset all data
 ### Future Works
 
 1. Reset Calorie and Protein Intake ✅
-2. Able to see breakfast, lunch and dinner's intakes ✅
-3. Export to a file
+2. Able to show breakfast, lunch and dinner's intakes ✅
+3. Able to use mathematic expressions as amount input ✅
+4. Export to a file
