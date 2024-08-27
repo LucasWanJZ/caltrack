@@ -3,6 +3,7 @@
 caltrack is a simple command-line tool to help you track your daily intake of protein and calories. It automatically resets your intake data at midnight, ensuring that you always have an accurate record of your daily consumption.
 
 ## Features
+
 - Track protein and calorie intake easily through the command line.
 - Automatically resets daily intake at midnight.
 - Lightweight and minimal dependencies.
@@ -15,6 +16,7 @@ caltrack is a simple command-line tool to help you track your daily intake of pr
    git clone https://github.com/LucasWanJZ/caltrack.git
    cd caltrack
    ```
+
 2. Ensure that you have Python 3 installed
 3. Make the script executable
    ```
@@ -24,33 +26,86 @@ caltrack is a simple command-line tool to help you track your daily intake of pr
    ```
    sudo mv caltrack.py /usr/local/bin/caltrack
    ```
-   
-## Usage 
-You can use Caltrack to track your protein and calorie intake throughout the day 
 
-### Track Protein Intake
-To add a specific amount of protein (in grams) to your daily total
+## Command Usage
+
+Command allows you to track your protein and calorie intake across different meals (breakfast, lunch, and dinner).
+You can add new amounts, view current totals, and reset data as needed.
+
+### Basic Usage
+
 ```
-caltrack protein 25
+caltrack <command> [amount] [--m <meal>] [--n <nutrient>]
 ```
 
-If you want to check your current protein intake:
+### Commands
+
+- `protein`: track or display protein intake
+- `calorie`: track or display calorie intake
+- `meals`: show the current intake of protein and calorie of a specific meal
+- `reset`: reset nutrient data (either `protein`, `calorie` or both)
+
+### Options
+
+- `amount`: The amount of protein (in grams) or calorie (in kcal) to add. This should
+  be a floating-point number.
+- `--m`: specify the meal to add or show data for. REQUIRED FOR ALL COMMANDS EXCEPT `reset`. {`breakfast`, `lunch`, `dinner`}
+- `--n`: specify the nutrient to reset. {`protein`, `calorie`}
+
+## Example
+
+1. Add Protein Intake to a Meal
+
+```
+caltrack protein 30 --m breakfast
+```
+
+Added 30g of protein to your lunch
+
+2. Add Calorie Intake to a Meal
+
+```
+caltrack calorie 400 --m dinner
+```
+
+Added 400kcal to your dinner
+
+3. View total protein intake
+
 ```
 caltrack protein
 ```
 
-### Track Calorie Intake 
-to add a specific amount of calories:
-```
-caltrack calorie 355
-```
-if you want to check your current calorie intake:
+4. View total calorie intake
+
 ```
 caltrack calorie
 ```
 
-### Future Works
-1. Reset Calorie and Protein Intake
-2. Export to a file
-3. Able to see breakfast, lunch and dinner's intakes
+5. View Nutrient Intake of a specific Meal
 
+```
+caltrack meals --m breakfast
+```
+
+view breakfast's nutrient data
+
+6. Reset Nutrient Data
+
+```
+caltrack reset --n protein
+```
+
+reset protein data
+
+```
+caltrack reset
+```
+
+reset all data
+
+### Future Works
+
+1. Reset Calorie and Protein Intake ✅
+2. Able to see breakfast, lunch and dinner's intakes ✅
+3. Export to a file
