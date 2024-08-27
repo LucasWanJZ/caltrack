@@ -54,7 +54,7 @@ caltrack <command> [amount] [--m <meal>] [--n <nutrient>]
 
 ## Example
 
-1. Add Protein Intake to a Meal
+### Add Protein Intake to a Meal
 
 ```
 caltrack protein 30 --m breakfast
@@ -68,7 +68,7 @@ caltrack protein 2.4*2.5 --m lunch
 
 2.4\*2.5g of protein will be calculated first, then add to your lunch.
 
-2. Add Calorie Intake to a Meal
+### Add Calorie Intake to a Meal
 
 ```
 caltrack calorie 400 --m dinner
@@ -76,19 +76,19 @@ caltrack calorie 400 --m dinner
 
 Added 400kcal to your dinner
 
-3. View total protein intake
+### View total protein intake
 
 ```
 caltrack protein
 ```
 
-4. View total calorie intake
+### View total calorie intake
 
 ```
 caltrack calorie
 ```
 
-5. View Nutrient Intake of a specific Meal
+### View Nutrient Intake of a specific Meal
 
 ```
 caltrack meals --m breakfast
@@ -96,7 +96,7 @@ caltrack meals --m breakfast
 
 view breakfast's nutrient data
 
-6. Reset Nutrient Data
+### Reset Nutrient Data
 
 ```
 caltrack reset --n protein
